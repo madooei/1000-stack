@@ -12,48 +12,16 @@ public final class EvaluateRPN {
   // Returns the value of the expression. Assumes tokens is a valid RPN
   // expression: each token is an integer or one of the operators +, -, *, /.
   public static int evalRPN(String[] tokens) {
-    Stack<Integer> stack = new ArrayStack<>();
-
-    for (int i = 0; i < tokens.length; i++) {
-      String token = tokens[i];
-
-      if (isOperator(token)) {
-        int b = stack.top();  // the most recent number is the second operand
-        stack.pop();
-        int a = stack.top();
-        stack.pop();
-        stack.push(apply(token, a, b));
-      } else {
-        stack.push(Integer.parseInt(token));
-      }
-    }
-
-    return stack.top();
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   // The brute-force solution: replaces the first operator and the two tokens
   // before it with their result, until one token is left.
   // Returns the value of the expression. Assumes tokens is a valid RPN expression.
   public static int evalRPNBruteForce(String[] tokens) {
-    ArrayList<String> list = new ArrayList<>();
-    for (int i = 0; i < tokens.length; i++) {
-      list.add(tokens[i]);
-    }
-
-    while (list.size() > 1) {
-      int i = 0;
-      while (!isOperator(list.get(i))) {
-        i++;  // find the first operator
-      }
-      int a = Integer.parseInt(list.get(i - 2));
-      int b = Integer.parseInt(list.get(i - 1));
-      int result = apply(list.get(i), a, b);
-      list.set(i - 2, Integer.toString(result));
-      list.remove(i);      // remove the operator first
-      list.remove(i - 1);  // then the second operand
-    }
-
-    return Integer.parseInt(list.get(0));
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   // Returns true if the token is one of the four operators.

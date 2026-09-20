@@ -21,36 +21,26 @@ public class ArrayStack<T> implements Stack<T> {
 
   @Override
   public void push(T item) {
-    if (item == null) {
-      throw new IllegalArgumentException();
-    }
-    if (size == arr.length) {
-      grow();
-    }
-    arr[size] = item;
-    size++;
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   @Override
   public void pop() {
-    if (isEmpty()) {
-      throw new NoSuchElementException();
-    }
-    size--;
-    arr[size] = null;  // clear the slot so the object can be garbage collected
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   @Override
   public T top() {
-    if (isEmpty()) {
-      throw new NoSuchElementException();
-    }
-    return arr[size - 1];
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   @Override
   public boolean isEmpty() {
-    return size == 0;
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   // bigger only ever holds T, so the cast is safe.

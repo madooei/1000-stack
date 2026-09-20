@@ -26,32 +26,25 @@ public class LinkedStack<T> implements Stack<T> {
 
   @Override
   public void push(T item) {
-    if (item == null) {
-      throw new IllegalArgumentException();
-    }
-    Node<T> newNode = new Node<>(item);
-    newNode.next = head;
-    head = newNode;
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   @Override
   public void pop() {
-    if (isEmpty()) {
-      throw new NoSuchElementException();
-    }
-    head = head.next;
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   @Override
   public T top() {
-    if (isEmpty()) {
-      throw new NoSuchElementException();
-    }
-    return head.value;
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 
   @Override
   public boolean isEmpty() {
-    return head == null;
+    // TODO: Implement me
+    throw new UnsupportedOperationException("TODO: Implement me");
   }
 }
