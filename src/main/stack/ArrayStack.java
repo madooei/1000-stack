@@ -43,7 +43,7 @@ public class ArrayStack<T> implements Stack<T> {
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // bigger only ever holds T, so the cast is safe.
+  // Doubles the capacity. Same cast rationale as the constructor.
   @SuppressWarnings("unchecked")
   private void grow() {
     T[] bigger = (T[]) new Object[arr.length * 2];

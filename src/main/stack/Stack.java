@@ -4,8 +4,6 @@ import java.util.NoSuchElementException;
 
 /**
  * A Stack is a collection that supports last-in-first-out (LIFO) access.
- * Items can only be added or removed at the top: the last item pushed onto
- * the stack is the first one popped off.
  *
  * @param <T> the type of elements in this stack.
  */
