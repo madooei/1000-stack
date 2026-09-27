@@ -1,13 +1,12 @@
 package stack;
 
+import java.util.NoSuchElementException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.NoSuchElementException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 /**
  * The contract test suite for the Stack ADT, written against the Stack interface
@@ -30,32 +29,13 @@ public abstract class StackTest {
   }
 
   @Test
-  public void isEmptyFalseAfterPush() {
-    stack.push(1);
-    assertFalse(stack.isEmpty());
-  }
-
-  @Test
-  public void topReturnsLastPushedWithoutRemovingIt() {
-    stack.push(10);
-    stack.push(20);
-    assertEquals(20, stack.top());
-    assertEquals(20, stack.top());   // still there: top does not remove
-    assertFalse(stack.isEmpty());
-  }
-
-  @Test
-  public void popRemovesInLifoOrder() {
-    stack.push(10);
-    stack.push(20);
-    stack.push(30);
-    assertEquals(30, stack.top());
-    stack.pop();
-    assertEquals(20, stack.top());
-    stack.pop();
-    assertEquals(10, stack.top());
-    stack.pop();
-    assertTrue(stack.isEmpty());
+  public void topOnEmptyStackThrows() {
+    try {
+      stack.top();
+      fail("expected NoSuchElementException when calling top on an empty stack");
+    } catch (NoSuchElementException e) {
+      return;
+    }
   }
 
   @Test
@@ -69,13 +49,114 @@ public abstract class StackTest {
   }
 
   @Test
-  public void topOnEmptyStackThrows() {
+  public void pushMakesStackNonEmpty() {
+    stack.push(10);
+    assertFalse(stack.isEmpty());
+  }
+
+  @Test
+  public void topReturnsPushedItem() {
+    stack.push(10);
+    assertEquals(10, stack.top());
+  }
+
+  @Test
+  public void topDoesNotRemoveTheItem() {
+    stack.push(10);
+    stack.top();
+    assertFalse(stack.isEmpty());
+  }
+
+  @Test
+  public void popOnlyItemLeavesStackEmpty() {
+    stack.push(10);
+    stack.pop();
+    assertTrue(stack.isEmpty());
+  }
+
+  @Test
+  public void topAfterPoppingOnlyItemThrows() {
+    stack.push(10);
+    stack.pop();
     try {
       stack.top();
-      fail("expected NoSuchElementException when calling top on an empty stack");
+      fail("expected NoSuchElementException after popping the only item");
     } catch (NoSuchElementException e) {
       return;
     }
+  }
+
+  @Test
+  public void topReturnsMostRecentlyPushedItem() {
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    assertEquals(30, stack.top());
+  }
+
+  @Test
+  public void popRevealsThePreviousItem() {
+    stack.push(10);
+    stack.push(20);
+    stack.pop();
+    assertEquals(10, stack.top());
+  }
+
+  @Test
+  public void twoPopsRevealTheFirstItem() {
+    stack.push(4);
+    stack.push(9);
+    stack.push(6);
+    stack.pop();
+    stack.pop();
+    assertEquals(4, stack.top());
+  }
+
+  @Test
+  public void pushAfterPopBecomesTheTop() {
+    stack.push(4);
+    stack.push(9);
+    stack.pop();
+    stack.push(2);
+    assertEquals(2, stack.top());
+  }
+
+  @Test
+  public void poppingEveryItemLeavesStackEmpty() {
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    assertTrue(stack.isEmpty());
+  }
+
+  @Test
+  public void pushingTheSameItemTwiceKeepsBothCopies() {
+    stack.push(7);
+    stack.push(7);
+    stack.pop();
+    assertEquals(7, stack.top());
+  }
+
+  @Test
+  public void manyPushesKeepTheMostRecentOnTop() {
+    for (int i = 1; i <= 12; i++) {
+      stack.push(i);
+    }
+    assertEquals(12, stack.top());
+  }
+
+  @Test
+  public void manyPushesKeepTheFirstItemAtTheBottom() {
+    for (int i = 1; i <= 12; i++) {
+      stack.push(i);
+    }
+    for (int i = 1; i <= 11; i++) {
+      stack.pop();
+    }
+    assertEquals(1, stack.top());
   }
 
   @Test
@@ -86,39 +167,5 @@ public abstract class StackTest {
     } catch (IllegalArgumentException e) {
       return;
     }
-  }
-
-  @Test
-  public void tracedScenarioFromTheNotes() {
-    stack.push(4);
-    stack.push(9);
-    stack.push(6);
-    assertEquals(6, stack.top());
-    stack.pop();
-    stack.pop();
-    assertEquals(4, stack.top());
-    stack.push(2);
-    assertEquals(2, stack.top());
-  }
-
-  @Test
-  public void manyPushesThenPopAllInLifoOrder() {
-    for (int i = 1; i <= 12; i++) {
-      stack.push(i);
-    }
-    for (int i = 12; i >= 1; i--) {
-      assertEquals(i, stack.top());
-      stack.pop();
-    }
-    assertTrue(stack.isEmpty());
-  }
-
-  @Test
-  public void pushAfterPopReplacesTheTop() {
-    stack.push(10);
-    stack.pop();
-    stack.push(20);
-    assertEquals(20, stack.top());
-    assertFalse(stack.isEmpty());
   }
 }

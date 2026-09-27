@@ -53,7 +53,7 @@ public class ArrayStack<T> implements Stack<T> {
     return size == 0;
   }
 
-  // bigger only ever holds T, so the cast is safe.
+  // Doubles the capacity. Same cast rationale as the constructor.
   @SuppressWarnings("unchecked")
   private void grow() {
     T[] bigger = (T[]) new Object[arr.length * 2];
