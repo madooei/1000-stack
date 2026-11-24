@@ -21,29 +21,31 @@ code/
         Stack.java              # the Stack ADT contract
         ArrayStack.java         # array-backed Stack
         LinkedStack.java        # node-backed Stack
-        Main.java               # demo entry point (the undo example)
+      demo/                     # one demo per implementation
+        ArrayStackDemo.java
+        LinkedStackDemo.java
     test/
       stack/
         StackTest.java          # abstract: the Stack contract suite
         ArrayStackTest.java     # runs the suite against ArrayStack
         LinkedStackTest.java    # runs the suite against LinkedStack
   scripts/
-    run.sh                      # compile and run the Stack demo (stack.Main)
     test.sh                     # compile and run every JUnit test
+    run.sh                      # compile and run one demo
 ```
 
 ## How to compile and run
 
 - `scripts/test.sh` — compiles everything and runs the full JUnit suite.
 - `scripts/test.sh stack.ArrayStackTest` — compiles everything and runs only that test class. Use this while you are working on one class and the other is still empty.
-- `scripts/run.sh` — compiles everything and runs the `Main` demo.
+- `scripts/run.sh demo.ArrayStackDemo` — compiles everything and runs that one demo. Every class you implement has its own demo, `<Class>Demo`.
 
 ## What's here
 
 - `stack.Stack<T>` — the Stack contract: `push`, `pop`, `top`, and `isEmpty`.
 - `stack.ArrayStack<T>` — the array-backed implementation, with the top at the end of the array.
 - `stack.LinkedStack<T>` — the node-backed implementation, with the top at the head of the list.
-- `stack.Main` — a runnable demo of the undo example, run on both implementations.
 - `stack.StackTest` — the abstract contract suite.
 - `stack.ArrayStackTest` — runs the contract suite against `ArrayStack`.
 - `stack.LinkedStackTest` — runs the contract suite against `LinkedStack`.
+- `demo.ArrayStackDemo` and `demo.LinkedStackDemo` — one demo per implementation, each on the undo example from the notes.
