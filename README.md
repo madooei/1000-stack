@@ -40,7 +40,7 @@ code/
 - `scripts/test.sh stack.ArrayStackTest` — compiles everything and runs only that test class. Use this while you are working on one class and the other is still empty.
 - `scripts/run.sh demo.ArrayStackDemo` — compiles everything and runs that one demo. Every class you implement has its own demo, `<Class>Demo`.
 
-## What's here
+## Contents
 
 - `stack.Stack<T>` — the Stack contract: `push`, `pop`, `top`, and `isEmpty`.
 - `stack.ArrayStack<T>` — the array-backed implementation, with the top at the end of the array.
